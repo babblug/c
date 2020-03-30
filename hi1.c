@@ -15,7 +15,7 @@ void init()
 }
 void insert(int value)
 {
-struct node *newNode = malloc(sizeof(struct node));
+struct node *newNode = (struct node*)malloc(sizeof(struct node));
 newNode->data = value;
 newNode->next =NULL;
 int key = value % size;
