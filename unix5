@@ -1,0 +1,132 @@
+Experiment -5
+AIM:
+ To write a cprogram that illustrates two processes communicating using 
+shared memory.
+Description:Shared memory is also one of the ways for Interprocess 
+communication.for allocating a shared memory segment we use shmget.
+Synopsis:
+ #include<sys/ipc.h>
+ #include<sys/shm..h>148
+ Int shmget(key_t key,size_t size,int shm_flg);shmget() returns the 
+identifies of the system shared memory segment() returns the 
+Identities of the system shared memory segment associated with the value of the 
+argument key.If there is no shared memory segment corresponding to key exist and 
+IPC_CREAT is specified in string.
+The value of string is composed of
+IPC_CREAT : To create a new segment.If this flag is not uesd,then shmget() will 
+find the segment associated with key and check to see if the user has permission to 
+access the segment.
+One of the valid values for cmd is IAC_RMID.
+IPC_RMID : Marks the segment to be destroyed.The segment will process 
+detaches it. The caller must be the ownes or creatar.The caller must ensure that a 
+segment is eventually destroyed.Otherwise its pages that were faulted in will 
+remain in memory or swap.
+When a new shared memory segment is created,its comments are initialized to zero 
+values and its associated datd structure,shmid_ds is intialized.
+The shared memory operations are shmat,shmdt.
+Synopsis:
+ # include<sys/types.h>
+ #include<sys/shm.h>
+ Void *shmat(int shmid,const void *shmaddr,int shmf(9));
+ Int shmdt(const void *shmadde);shmat() attaches the system shared memory 
+segment identified by shmid to the address space of the calling process.The 
+attaching process is specified by shmaddr with.149
+ If shmaddr is NULL,the system chooses a suitable address at which to attach 
+the segment.
+ If shmaddr isn”t NULL,the attach occurs that the address equal to the 
+shmaddr otherwise must be a page alligned address at which attach occurs.shmdt() 
+detaches the shared memory segment located at the address specified by shmaddr 
+from the address space of the calling process.the to_be_attached segment must be 
+currently attached with shmaddr equal to the value returned by the attaching 
+shmdt() call.
+ Foraccessing a file we have to know the file i.e.file path and its id,for this we 
+use ftok.
+ftok: It convert the pathname and project identifies to system.
+Synopsis:
+ #include<stdio.h>
+ #include<sys/types.h>
+ #includes<sys/ipc.h>
+ Key_t ftok(const char *pathname,int proj-id);ftok() function uses the identity 
+of the file named by the given pathname(which must refer to an existing, 
+accessible file)and the least significant a bits of proj-id(which must be non zeros) 
+to generate a key_t type system.
+ For performing control operation specified by and on the system shared 
+memory segment whose indentifies is given in shmid.
+ The buf argument is a pointer to a shmid_ds structure defined in <sys/shm.h>
+Synopsis: int shm_ctf(int shmid , int cmd , struct shmid_ds *buf); one of the valid 
+values for cmd is IPC_RMID.
+IPC_RMID : Marks the segment to be destroyed.The segment will only actually be 
+destroyed after the last process detaches it.The caller must be the owner or 
+creater.The caller must ensure that a segment is evantually destroyed.otherwise its 
+pages that were faulted in will remain in memory or swap.150
+Shmwrite.
+#include<sys/types.h>
+#include<sys/ipc.h>
+#include<sys/shm.h>
+#include<stdio.h>
+#include<stdlib.h>
+#define SHMSz 100
+int main( )
+{
+key_t key;
+int shnflg=0666/IPC_CREAT;
+int shmid;
+char c,*shm,*s;
+struct shmid_ds *buf;
+key=ftok(“.”,’h’);
+printf(“\n key is >>%d”,key);
+if((shmid=shmget(key,SHMSz,shmflg))==-1)
+{
+perror(“shmget failed”);
+exit(0);
+}
+printf(“\n shared memory created/opened with ID>>%d\n”,shmid);
+shm=shmat(shmid,NULL,0);151
+s=shm;
+for(c=’a’;c<=’z’;c++)
+*s++=c;
+*s=(char)0;
+while(*shm!=’*’)
+sleep(1);
+shmdt(shm);
+shmct1(shmid,IPC_RMID,buf);
+printf(“shared memory removed \n”);
+return 0;
+}
+Output:
+Key is>>1745173964
+Shared memory created/opened with ID >>229379
+Shared memory removed.
+Shmread.c
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<sys/ipc.h>
+#include<sys/shm.h>
+#define SHMSz 100
+int main()152
+{
+key_t key;
+int shmid;
+char c,*shm,*s;
+key=ftok(“.”,’h’);
+printf(“\n key is >>%d”,key);
+if((shmid=shmget(key,SHMSZ,0666))==-1)
+{
+perror(“SHMGET FAILED”);
+exit(0);
+}
+printf(“\n shared memory created /opened with ID >>%d\n”,shmid);
+shm=shmat(shmid,NULL,0);
+for(s=shm,*s!=(char)0;s++)
+printf(“%c”,*s);
+print(“\n”);
+*shm=’*’;
+shmdt(shm);
+return 0;
+}
+Output:
+key is >> 1745173964
+shared memory created/opened with ID>>229379153
+abcdefghijklmnopqrstuvwxyz.
+Experiment -6
