@@ -1,0 +1,50 @@
+AIM:
+ Study of Bash shell, C shell and Bourne shell in Unix/Linux operating system.
+THEORY:
+BASH SHELL:
+ Bash shell is a Unix shell and command language written to Brion Fox for 
+GNU project as a free software replacement for the Bourne shell.
+ Bash is a command processor, that typically sums in a text window, when 
+the user types commands that cause actions. Bash can also read and execute 
+commands from a file, called a script.
+FEATURES:
+ The Bash commands syntax is superset of Bourne shell command syntax.
+ 1.Bash can execute the vast majority at the Bourne shell scripts without 
+modification. With the exception of Bourne shell scripts strumbling into fringe 
+syntax, behaviour interpreted, differently in hash or attempting to run a system 
+command matching a never bash built in etc… such as command line editing 
+command history, the directly stack, the $RANDOM and $PPID variables and 
+variables and POSIX command substitution syntax $(…).
+ 2.Bash’s syntax has many extensions lacking in Bourne shell.
+ 3.Bash can perform integer calculations without spacing external 
+processor.
+ 4.Bash supports ‘here documents’ since version 205b bash can redirect 
+standard input form a “here string” using ‘<<<’ operator.
+C SHELL SCRIPTING:
+ C shell was written by Bill Joy and they have syntax of C language. In a
+C-shell we use different commands from Bash shell. For example, to initialize a 
+variable, in Bourne shell, we simply give value by using the operator ‘:’ where as 
+in C-shell we use either “SET” or “@” commands.
+FEATURES:
+1.Control structures (loop and conditional statements)
+2.Variable assignment
+3.Job control130
+4.Customosable environment, some special characters !, < >, |, *
+ Some of the built in variables are
+ 1.arg V: special variables to hold value of argument
+ 2.history: sets how many lines of history to remember
+ 3.term: contains the current terminal type
+BOURNE SHELL:
+ It is shell or command line interpreter for computer operating systems. It 
+was default shell for Unix, most Unix like systems continue to have /bin/ch which 
+will be the Bourne shell or a symbolic link or hard link.
+ 1.It was developed by Stephen resource
+ 2.It was also intected as a scripting language, and contains most of features that 
+are most commonly considered to produce programs
+ 3.It is mainly invented to allow shell scripts to be used to filters
+ 4.To provide programmability including control
+ 5.Control over signal handling written scripts and over input/output file 
+descriptions
+ 6.To provide environment mechanism
+ 7.It also supports input and output redirection and pipe lines.
+ 
