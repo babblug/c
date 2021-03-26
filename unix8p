@@ -1,0 +1,64 @@
+PROGRAM:
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<pthread.h>
+#define size 10
+Int full=0,k=0,empty=size, count=-1,products[size];
+pthread_mutex_t clock=PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t clock=PTHREAD_MUTEX_INITIALIZER;
+void *produce(void *ptr){
+int item=rand()%100;
+while(full==size)
+sleep(1);
+thread_mutex_lock(&plock);
+full++;
+products[++count]=item;
+printf(“%d item is produced \n ”, item);
+empty--;
+sleep(1);
+pthread_mutex_unlock(&plock);
+}
+void *consume(void *per)
+{
+while(empty==size)
+sleep(1);
+pthread_mutex_lock(&clock);
+empty++;
+printf(“%d item is consumed \n ”,products[count--]);
+full--;
+sleep(2);
+pthread_mutex_unlock(&clock);
+}
+int main()
+{
+Int i,n_prod,n_con;
+pthread_t producers[10],consumers[10];
+printf(“enter number of produces : ”);
+scanf(“%d”,&n_prod);
+printf(“enter number of consumers : ”);
+scanf(“%d”,&n_con);
+for(i=0;i<n_prod;i++)
+pthread_create(&producers[i],NULL,produce,NULL);
+for(i=0;i<n_con;i++)
+pthread_create(&consumers[i],NULL,consumer,NULL);
+for(i=0;i<n_prod;i++)
+pthread_join(producers[i],NULL);
+for(i=0;i<n_con;i++)
+pthread_join(consumers[i],NULL);
+}
+
+Output:
+
+enter number of producers : 5
+enter number of consumers : 4
+83 item is produced
+83 item is consumed
+96 item is produced
+96 item is consumed
+77 item is produced
+15 item is consumed
+86 item is produced
+86 item is consumed
+94 item is produced
