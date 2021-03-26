@@ -1,0 +1,92 @@
+AIM:To Write a C progrm TO emulate the UNIX ls-l command.
+DESCRIPTION:
+ ls commands lists the directory contents.
+ Synopsis:
+ ls [option]...[File]...
+ ls-l uses long listing format.It lists the information about the files (in current 
+directory by default).140
+readdir() : reads every entry of the file in directory.
+ ectory entry 
+ it includes the header file dirent.h
+ #include<dirent.h>
+ struct dirent *reader(DIR *dirp);
+ readdir() returns a ponter to a dirent structure representing the next directory 
+entry in the directory pointed by dirp.It returns NULL when we reach the end of 
+the directory (or) it on error occured.
+getenv() : get on environment variable
+ It is included in the header file stdlib.h
+ char *getenv(const char *name);
+ It returns a pointer to the corresponding value string.for opening a directory 
+we use opendir().
+ Synopsis : 
+ #include<sys/types.h>
+ #include<dirent.h>
+ DIR *opendir (const chsr *name);
+ opendir() function opens a directory stream corresponding to the directory 
+name and returns a pointer to the directory stream, and returns NULL when an 
+error occured while reading a directoy using readdir(), the dirent structure is 
+defined as
+ 
+ struct dirent{
+ ino_t d_ino; /*inode number(identify of a file)*/141
+ off_t d_off; /*not an offset;see NOTES*/
+ unsigned short d_reclen; /*length of this record*/
+ unsigned char d_type; /*type of files*/
+ char d_name[256]; /*filename*/
+for every file in a directory we have to check these details and list out the total 
+number of entries in a directory.
+ 
+OUTPUT :
+ $CC ls_pro.c
+ $./a.out
+ 
+ thread.c 32 782848825632156945 22824829
+ shwrite 32 1405174077221141355 22823319
+ hello.c 32 1721526626956784295 22809753
+ a.out 32 274768035126310322 22813317
+ thread 32 3893715881664242474 22825094
+ copy_sys.c 32 4026266324001827276 22825237
+ .. 24 422165978888878032 22822539
+ cp_lib.c 32 42216597888885412 22825982
+ shmread.c 32 4982933381601841607 22823318
+ mutex 32 502697342396996005 22825302
+ semainit.c 32 64525252464511294 22827411
+ lspro.c 32 8452283209962480721 22513856142
+ pcpe.c 32 8667055463998658146 22823311 
+ semaB.c 32 226119009188028051 22827409
+ semaA.c 32 9223372036854775807 22827412
+total entries 15 
+PROGRAM : 
+ #include<stdio.h>
+ #include<stdlib.h>
+ #include<sys/types.h>
+ #include<dirent.h>
+ int main void()
+ {
+ char *curr_dir=NULL;
+ DIR *dp=NULL;
+ struct dirent *dent=NULL;
+ unsigned int count=0;
+ curr_dir = getenv("PWD");
+ if(curr_dir==NULL)
+ { 
+ printf("\n ERROR : could not get the working directory\n");
+ return -1;
+ }
+ dp = opendir((const char*)curr_dir);
+ if(dp==NULL)143
+ {
+ printf("\n ERROR : could not open the working 
+ directory\n");
+ return -1;
+ }
+ printf("/n");
+ for(count=0;(dent=readdir(dp)!=NULL;count++)
+ {
+ printf("%s\t%c\t%u\t%li\t%lu\t\n",dent-> 
+d_name,dent->d_type,dent->d_reclen,dent->d_off,dent->d_ino);
+ }
+ printf("\nTotal entries:%d\n",count);
+ return 0;
+ }
+ 
