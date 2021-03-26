@@ -1,0 +1,127 @@
+AIM:To write a c program that makes a copy of a file using standard I/O and 
+system calls.
+DESCRIPTION: A file is a collection of bytes stored on a secondary storage 
+device which is generally a disk of same kind.
+The collection of bytes maybe interrupted for example as characters, words, 
+lines, pages and paragraphs from a textual document, field and records belonging 
+to a database or a pixel from a graphical image.
+c-functions(standard I/O):
+for reading, writing, closing, opening a file, we have some functions namely:134
+fopen()-used to create a file/open an existing file.
+fclose()- to close a file.
+fputc()- writes a character into a file.
+fgetc()- reads a character into a file.
+fseek()- set the position to a described point.
+Here file *fp the pointer, which will hold the reference to the opening .file(opened 
+file)
+for opening,we use different modes like:
+r:reading mode
+w:writing mode
+a:appends a file in appending mode
+r+:both read and write mode
+w+:both read and write mode
+a+:both read and write mode
+for opening,we use different modes likes
+r:reading mode
+w:writing mode
+a:appends a file in appending mode
+r+:both read and write mode
+w+:both read and write mode
+a+:both read and write mode
+system calls:135
+using the algorithm call rather than the c-library functions will increase the 
+speed of programs because system calls directly goas to kernal and then to 
+hardware components but where as c-functions are from
+user->shell->kernal->hardware(os)
+c-system calls:
+for reading,writing,closing and opening a file ,we also have system calls normally
+int(file descripter) open(opening file)(const char *path(file name),int 
+flag(mode),mode_t mod(permissions for file))
+void close(closing file)(int fd(file discripter))
+size_t read(int fd(file discriptor),void *buf(buffer),size_t constant(no of 
+bytes we need))
+size_t write(int fd(file discriptor),const void *buf,size_t count(no of bytes 
+we want to access))
+modes:modes that we use here are
+O_RDONNLY
+O_WRONLY
+O_RDWR
+O_CREAT
+O_TRUNC
+O_EXCEL
+PROGRAM USING I/O FUNCTION
+#include<stdio.h>
+#include<stdlib.h>
+#include<fcntl.h>136
+#include<unistd.h>
+int main()
+{
+char temp,fname1[10],fname2[10];
+FILE *rfp,*wfp;
+printf("enter the source file");
+scanf("%s",fname1);
+printf("enter the destinstion file");
+scanf("%s",fname2);
+rfp=fopen(fname1,"r");F)
+wrp=open(fname2,"w");
+if((rfp<0)||(wfp<0))
+{
+perror("error while opening the files");
+exit(0);
+}
+while(temp!=EOF)
+{
+temp=fgetc(rfp);
+fputc(wrp,temp);
+printf("%c",temp);
+}137
+fclose(rfp);
+fclose(wfp);
+return 0;
+}
+OUTPUT:
+enter the sourse file
+hello.c
+enter the detination file
+hello_copy.c
+$cat hello.c
+#include<stdio.h>
+int main()
+{
+printf("hello world");
+return 0;
+}
+$cat hello_copy.c
+#include<stdio.h>
+int main()
+{
+printf("hello world");
+return 0;138
+}
+PROGRAM USING SYSTEM CALLS
+#include<stdio.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<unistd.h>
+int main()
+{
+char temp,fname1[10],fname2[10];
+int rfp,wfp,size;
+printf("enter the source file");
+scanf("%s",fname1);
+printf("enter the destinstion file");
+scanf("%s",fname2);
+rfp=fopen(fname1,O_RDONLY);
+wrp=open(fname2,O_WRONLY,O_CREAT,0700);
+if((rfp<0)||(wfp<0))
+{
+perror("error while opening the files");
+exit(0);
+}
+while((size=read(rfp,buf,10)!=0)139
+{
+ write(wrf,buf,10))!=0);
+close(rfp);
+close(wfp);
+return 0;
+}
