@@ -1,0 +1,41 @@
+AIM:
+Study of linux/unix file system(tree structure)
+DESCRIPTION: 
+A file system is a logical extension of files on a position disc.UNIX uses a 
+hierarchial file system structure, much like an upside-down tree, with soot(/) at the 
+base of file system is a collection of files and directories that has the following 
+properties.131
+-> It has a root directory(/) that contains other files and directories.
+-> Each file or directory is uniquely identified by its name the directory in which it 
+resides and a unique identifier, typically caused an inode.
+->By convention, the root directory has an inodenumber of three. Inode numbers 0 
+and 1 are not used. File inode numbers can be seen specifying the -i option to ls 
+command.
+->It is self contained. There are no dependencies between one file system and the 
+other.
+The directories have a specific purpose and generally hold the same types of 
+information for easily locating files. Following are the directories that exist on 
+major versions of unix.
+DIRECTORY DESCRIPTION:
+/ ->This is root directory which should contain only the directories needed at the 
+top level of file structure.
+/bin ->This is tthe ls where the executable files are located. They are available to 
+all the users.
+/dev ->These are device drivers.
+/etc ->supervisor directory commands, configuration files, disk configuration files, 
+valid user lists, groups, ethernet, hosts where to send critical messages.
+/fib ->constraints shared library files and sometimes ther kernal selected files
+/boot ->contains files for booting the system
+/home ->contains the home directory for users and other acccounts.
+/mnt ->used to mount other temporary file system such as cdrom and floppy for the 
+CDROM drive and floppy diskette drives respectively.
+/psoc ->contains oil process marked as a file by process number on their 
+information that is dynamically to the system.
+/tmp ->holds temporary files used between system boots.132
+/usr ->used for miscellaneous purposes or can be used by many users includes 
+administrative commands, shared files, library files and others.
+/var ->Typically contains variable length files such as log and print files and any 
+other type of file that may contain variable amount of data.
+/sbin -> contains binary(executable ) files, usually for system administration. For 
+example fidrsk and IFCONFIG utilities.
+/kernal ->contains kernal files.
