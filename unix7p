@@ -1,0 +1,32 @@
+PROGRAM :
+
+#include<stdio.h>
+#include<pthread.h>
+Void *function();
+Pthread_mutex_t mutex1=PTHREAD_MUTEX_INITIALIZER;
+Int counter=0;
+Int main()
+{
+Int rc1,rc2;
+Pthread thread1,thread2;
+If(rc1=pthread_create(&thread1,&function,NULL))
+Printf(“thread creaction failed %d\n”),rc1); 
+if(rc2=pthread_creation(&thread2,NULL,&function,NULL))
+Printf(“thread creation failed %d\n”,rc2); 
+pthread_join(thread1,NULL);
+Pthread_join(thread2,NULL);
+Exit(0);
+Return 0;
+}
+Void *function()
+{
+Pthread_mutex_lock(&mutex1);
+Counter++;
+Printf(“countes value %d \n”,counter);
+Pthread_mutex_unlock(&mutex1);
+}
+
+
+OUTPUT:
+Counter value 1
+Counter value 2
