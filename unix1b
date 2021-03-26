@@ -1,0 +1,51 @@
+AIM:
+Study of vi editor
+Theory:
+vi editor:
+vi is an editor for linux,unix and other unix like operating system. vi stands for 
+‘Virtual Instrument’ . It is a widely used default text editor for linux based 
+operating systems and is shipped with virtually all versions of unix. It exclusively 
+uses the keyboard and provides a very efficient interface for editing programs and 
+scripts while working with vi editor, use usually came across two modes.
+1.Command Mode:
+This mode enables you to perform administration tasks such as saving the files, 
+executing the commands, moving the cursor and pasting the lines or words as well 
+as finding and replacing. In this mode, whatever you type is interpreted as a 
+command.
+2. Insert Mode: 
+This mode enables you to insert text into the file. Everything that’s typed in the 
+mode is interpreted as input and placed in a file. Usually the vi editor defaultly in 
+command mode. We can change to insert mode by pressing ‘i’.
+If we want to come out of insert mode then we use ESC key. It will change 
+insert mode to command mode.
+
+Commands used in vi editor:
+
+1.Deleting:
+1. Place cursor on character we want to delete.
+2. Press dd to delete entire line. 
+3. Press X key to delete a character under the cursor.
+4. Press dw to delete a word.
+2.Inserting: ‘i’ key is used to insert text.
+1. Move the cursor to the position, we want to insert.
+2. Press ‘i’ key, then it changes to insert mode.
+3.Appending: Press ‘a’ to append the text.128
+1. Move the cursor to position where you want to insert.
+2. Press ‘a’ key, then it enters into append mode.
+4.Selecting: ‘v’ key is used for selecting.
+1. Move the cursor to position where you want to start selecting and press 
+‘v’ and take to that position you want to select by using across marks.
+2. If you want to write the select text in a file, then type ‘:’ text you get’<,> 
+qtype ‘w’ filename.
+5.Copy and paste:
+1. ’y’ key is used to copy and ‘p’ to paste.
+2. Move cursor to starting of your desired line and select text and then for 
+Copying type ‘y’ and for pasting ‘p’.
+6.Replace:
+Type rx to replace the character at cursor ‘:x’, where ‘x’ is another 
+characters.
+1. Place cursor at position, where you want to replace characters.
+2. Now press r and the character that you want to replace.
+7.Finding or Searching:
+1. Type ‘/’ followed by a phrase to search for that phrase.
+2. When we search by using ‘/’ it points cursor to word that use specified
