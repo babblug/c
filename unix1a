@@ -1,0 +1,267 @@
+AIM: To study Unix/Linux general purpose utility command list 
+man,who,cat,cd,cp,mv,rm,mkdir,rmdir,echo,more,less,date,time,kill,history,chmod
+,chown,finger,pwd,cal,logout,shutdown
+
+Description:
+man:
+man is the system`s manual pages. Each page argument give to man is 
+normally the name of a program or function. The manual page associated with 
+each of these arguments is then found and displayed.
+Syntax: man [-option] command
+
+Option:
+-f: Display the short description from the manual pages available.
+-k: Search the short manual page description for keywords and display any 
+matches.
+-l: Activate ‘local’ mode format and display manual files instead of 
+searching through the system’s manual collections.
+Example: man cat
+Display the manual page for cat command.
+Who:
+Print information about users who are currently logged in.
+Syntax: who [-option]—[file][am i]
+Option:
+-b: Time of last system boot.
+-d: Print dead processes.
+-H: Print line of column headings.
+-l: Print system login processes.
+-q: All login names and no.of users logged in.
+-r: Print current run level.
+-s: Print only name, time(default) and line.
+Example:
+1.who am i
+2.  who –s
+
+Cat:
+Concatenate files and print on standard output.
+Syntax: cat [option]---[file]---
+Option:
+-A: Reads standard input.
+-b: Numbers non-empty lines.
+-E: Displays ‘$’ at the end of each line.
+-n: Numbers all output lines.
+-s : Suppress repeated empty output lines.
+-T: Display TAB character as ^T.
+f-g: Displays contents of f, then standard input then contents of g.
+Example: cat –n sample.c
+Display the contents of sample.c along with line numbers.
+Cd:
+Change the current working directory to a specific folders.
+Syntax: cd [option] directory
+Option:
+-P: Do not follow symbolic links.
+-L: Follow symbolic links.
+Example: cd ADS
+Changes to the ADS directory.
+cp:
+Copy files and directory.
+Syntax: cp [option] –SOURCE DEST
+
+Copy source to DEST or multiple sources to directory cp[option]--
+SOURCE—DIRECTORY.
+Option: 
+-f: If an existing destination file can’t be opened, remove it and try again.
+-i: Prompt before overwrite.
+-R: Link files instead of copying.
+ -r, -R: Copy directories recursively.
+-t: Copy all sources arguments into directory.
+Example: cp file1.c file2.c
+Copies contents of file1.c to file2.c
+ps:
+Display information about a selection of the active processes.
+Syntax: ps [option]
+Option: 
+-e,-A: Select all processes.
+ -d: Select all processes except session leaders.
+ -a: Select all processes except session leaders and processes not 
+associated with a terminal
+ -r: Restrict the section to only running processes.
+Example :ps
+PID TTY TIME CND
+1564 pts/0 00:00:00 bash
+1822 pts/0 00:00:00 ps
+
+ls:
+List information about files.
+Syntax: ls [option]---[file]---
+Option:
+-A:Do not list implied . and ..
+-a: Do not ignore entries starting with.
+-B: Do not list implied entries ending with ~.
+-c: List entries by columns.
+-d: List entries themselves, not their contents.
+-l: Use a long listing format.
+Example: ls
+Lists all files in present working directory.
+mv: 
+Remove SOURCE to DEST, or move Sources to directory.
+Syntax:
+mv [option]---SOURCE DEST
+mv [option]---SOURCE--DIRECTOR
+
+Option:
+-n: Do not overwrite an existing file.
+-t: Move all source arguments into directory.
+-v: Explain what is being done.
+-T: Treat DEST as a normal file.
+
+Example: mv –v file1.c file2.c
+Output: ‘file1.c’ -> ‘file2.c’
+rmdir:
+Remove the directories, if they are empty.
+Syntax: rmdir [option]---DIRECTORY---
+Option: 
+-P: Remove DIRECTORY and its ancestors.
+-V: Output a diagnostic for every directory processed.
+Example: rmdir –V lp_lab
+Output: rmdir: removing directory ‘lp_lab’
+echo:
+Display a line of text.
+Syntax: echo [option]...[string]...
+Option: 
+-n: Do not output the trailing new line.
+-e: Enable interpretation of backslash escape.
+Example:
+echo hello
+hello
+more:
+more is a filter for paging through text one screenful at a time. 
+Syntax: more [option] file---
+
+Options:121
+-l: Do not pause atler anyline containing a^L
+-f: Count logical lines, rather than screen lines (i.e, long lines are not folded)
+-u: Supress underlining.
+Example: 
+more -3 ex.c
+displays first 3 lines of file ex.c
+less:
+less is a program similar to more, but which allows backward movement in 
+the file as well as forward movement.
+Syntax: less [options]file---
+Options :
+-r: Repaint the screen
+-p: Goto the line containing byte offset N in the file.
+Example : 
+less sample.c
+Date:
+Display the current time in the given FORMAT or set the system date.
+Syntax: date [option][+FORMAT]
+Options:
+-u: Print as set coordinate universal time(UTC).
+-R: Output date and time in RFC format.
+-r: Displays last modified time of file.
+
+format :
+%D –date; same as %m/%d/%y
+%T –time; same as %H:%M:%S
+%r –locates 12-hour clock time same as 11:11:04 pm
+Example:
+Date –U
+Output: sat Aug 19 19:US:09 UTC 2018
+Time:
+It is used to determine the duration of execution of a particular command.
+Syntax: time [option] command
+Option: 
+-a: Append the resource use information to the output file instead of over 
+writing it.
+-p: Use the following format string for conformance with POSIX standard 
+1003.2
+real %e
+user %u
+sys %s
+Example: time –p date
+Output:
+Sun Aug 20 03:34:59 IST 2018
+real 0.32
+user 0.00
+
+sys 0.00
+Kill:
+Send a signal to process
+Syntax: kill [option]<pid> [...]
+Option:
+-l: List signal names . This option has optional argument which will convert 
+Signal number to signal name, or other way round.
+Example: kill –a –l
+Kill all processes you can kill
+History:
+GNU history library, many programs read input from the user a line at a 
+time. The GNU history library is able to keep track of those lines, accessible 
+arbitrary date with each(other) line.
+Example: history
+Gives all the commands used
+chmod:
+This is a command and system call which may change the access 
+permissions to file system objects it may also alter file mode bits.
+Syntax: chmod [options] mode [mode] FILE1[FILE2..]
+Option: 
+-R:recursive, i.e, include objects in subdirectories.
+-f: Force, force a head with all objects even if error occurs.
+-V: Verbose, show objects processed
+
+Example: ls-l FF1.c
+Output: -rw-r-r—l Navya 0 Aug IS 12:15 FF1.c
+Chown: To change the file owner and group, by default the owner of a file system 
+object is the user that created it.
+Syntax: chown [option]---[owner].[group]File---
+Option: 
+-c: Changes, like verbose. But report only when change has occurred
+-f: Silent, suppress most error messages.
+Example: ls-l hw.y
+Output:
+-rw-r-r—l.navya Navya 0 Aug IS 12:15 hw.y 
+chown.root hw.y
+ls –l hw.y
+pwd:
+Prints name of current/working directory.
+Syntax: pwd[-option]
+Options: 
+-l: Use pwd from environment, even if it contains symlinks
+-p: Avoid all symlinks.
+Example: pwd [-lp]125
+Output: /home/linux/16VV1A0519
+Finger:
+User information lookup program i.e, displays information about system 
+users.
+Syntax: finger [option][username]
+Option:
+-l:Force long output format.
+-m: Match arguments only on user name.
+-p: Suppress printing of the plan file in a long format.
+-s: Force short output format.
+Example: finger user1
+Given details about that ‘user1’ user.
+cal:
+Display a conveniently-formatted calendar from the command line.
+Syntax: cal [option] [day][month][year]
+Option: 
+-h: Turns off highlights of today.
+-y: Print calendar for specific year.
+-l: Display only current month. This is default.
+-m: Weeks start from Monday.
+-s: Weeks start from Sunday.
+Example: cal –h
+Displays calendar without highlighting today.126
+Logout:
+This is used by the normal users to end their own session, logout of a login 
+shell.
+Syntax: logout
+Example: logout
+Logout if the shell is logged in asking user for unsaved documents.
+Shutdown:
+ Used to shutdown a system restart it i.e, both local and remote machines.
+Syntax: shutdown [option][Time][Message]
+Option:
+ -H: Half the machine.
+ -P: Poweroff the machine.
+ -r: Reboot the machine.
+ -c: Cancel a pending shutdown.
+Example:
+ Shutdown –h now
+Shutdown the system, ‘now’ –time parameter time can be specified in minutes or 
+hours.
+
+
+
+
