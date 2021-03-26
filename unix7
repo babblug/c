@@ -1,0 +1,67 @@
+AIM: To write a c program to create a thread using pthreads library and let it run 
+its function and to illustrate concurrent execution of threads.
+
+Description:
+
+Pthread-mutex:
+
+Synopsis : #include<pthread.h>
+
+Pthread-mutex-t fastmutex=PTHREAD-MUTEX-INITIALIZER;
+Int pthread_mutex_init(pthread_mutex_t *mutex
+Const pthread_muxtex_lock(pthrad_mutex *mutex);
+Int pthread_mutex_lock(pthread_mutex_t *mutex));
+Int pthread_mutex_unlock(pthread_mutex_t *mutex));
+
+Description:
+
+ α Mutex is a mutual exclusion device and is useful for protecting shared 
+data structures from concurrent modifications and implanting critical sessions and 
+locked(owned by one thread).a mutex can never be owned by two different threads 
+simultaneously. α Thread attempting to lock a mutex that is already thread unlock 
+the mutex first.
+Pthread_mutex_init(): initializes the mutex object pointed to mutex according to 
+mutex attributes specified in mutexattr. If mutexattr is NULL ,default attribute are 
+used insread.
+Pthread_mutex_lock(): looks the given mutex. If themutex is currently 
+unclocked,it become locked and owned by the calling thread and 
+pthread_mutex_lock returns immediately , if the muxter is already locked by 
+another thread.
+Pthread_mutex_lock returns immediately with error code.
+Pthread_mutex_unlock(): unlock the given mutex. The mutex is assumed to be 
+locked and owned by the calling thread on entrance to pthread_mutex_unlock.
+Return value : pthread_mutex_init always returns o.
+The other mutex functions returns 0 on success and non-zero error code on error. 
+
+PROGRAM :
+
+#include<stdio.h>
+#include<pthread.h>
+Void *function();
+Pthread_mutex_t mutex1=PTHREAD_MUTEX_INITIALIZER;
+Int counter=0;
+Int main()
+{
+Int rc1,rc2;
+Pthread thread1,thread2;
+If(rc1=pthread_create(&thread1,&function,NULL))
+Printf(“thread creaction failed %d\n”),rc1); 
+if(rc2=pthread_creation(&thread2,NULL,&function,NULL))
+Printf(“thread creation failed %d\n”,rc2); 
+pthread_join(thread1,NULL);
+Pthread_join(thread2,NULL);
+Exit(0);
+Return 0;
+}
+Void *function()
+{
+Pthread_mutex_lock(&mutex1);
+Counter++;
+Printf(“countes value %d \n”,counter);
+Pthread_mutex_unlock(&mutex1);
+}
+
+
+OUTPUT:
+Counter value 1
+Counter value 2
