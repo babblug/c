@@ -1,0 +1,77 @@
+Experiment - 4
+AIM:
+ To write a cprogram that illustrates how to execute two commands 
+concurrently with a command pipe.
+ EX:-ls-||sort
+Description:
+Pipe(): Pipe() creates pipe, a unidirectional data channel that can be used for 
+iterprocess communication.
+Pipe144
+Synopsis: 
+#incude<unistd.h>
+Int pipe(int pipefd[2])
+The array pipefd is used to return two files descriptors feferring to the ends of the 
+pipe pipefd[0] refers to the read end of the pipe and pipefd[1] refers to th write end 
+of the pipe. Data written to the write end of the pipe is buffered by the kernal until 
+it is read from the read end of the pipe.
+Return value: On success, zero is returned. On errors, -1 is returned and errno is set 
+properly.
+dup():
+dup1,dup2,dup3- duplicate a file descriptor.
+Synopsis:
+#include<unistdd.h>
+int dup(int,oldfd);
+int dup2(int oldfd,int newfd);
+int dup3(int oldfd,int newfd, int flags);
+These systems calls create a copy of the file descriptor for oldfd. dup() uses the 
+lowest numbered unused descriptor for the new descriptor.
+dup2() makes newfd be the copy of oldfd,closing newfd first if necessary, but not 
+the following.
+• If oldfd is not a valid file descripter, then the call fails, and a newfd is not 
+closed.
+• If oldfd is valid & newfd has same value as oldfd then dup2() does nothing, 
+and returns newfd.
+A successful return from one of these system calls, the od and new file 
+descriptors may be used interchagneably. Thy refers to some open file 
+description & thus share file offset and file status flags.145
+System():
+Synopsis:
+#include<sydlib.h>
+int system(const char*command);
+system() execute a command specified in commandby calling /bin/sh –c command, 
+and returns atlr the command has been completed. During execution of command, 
+SIGCHILD will be blocked and SIGINT and SIGQUIT will be ignored.
+Return value: The value returned is -1 on error and the return status of the 
+command otherwise.
+Program
+#include<stdio.h>
+#include<sydlib.h>
+#include<unistd.h>
+#include<sys/wait.h
+#include<sys/types.h>
+int main(int argc, char *argv[])
+{
+int fd[2],pid,k;146
+k=pipe(fd);
+if(k==1)
+{
+Perror(“pipe”);
+Exit(1);
+}
+Pid=fork(0);
+if(pid==0)
+{
+Close(fd[0]);
+dup2(fd[1],0);
+close(fd[1]);
+system(argv[1]);
+}
+else
+{
+wait(0);
+close(fd[1]);
+dup2(fd[0],0);
+close(fd[0]);
+system(argv[2]);
+}
+}
