@@ -1,0 +1,30 @@
+AIM:
+Study of bashrc,/etc/bashrc and environment variables.
+DESCRIPTION: 
+Following is the partial list of environmental variables.
+DISPLAY ->contains the identifier for the display that XII programs should use by 
+default.
+HOME ->indicates the home directory of the current.
+IFS ->indicates the internal field separator, that is used by the parser for word 
+spitting after expansion.
+LANG ->LANG expands to the default system locate;
+LC ->XII can be used to override this for example, if its value is ptBR, then the 
+language is set to portugese and the locate to brazil.
+LD-LIBRARY-PATH ->on many UNIX systems with a dynamic linker, contains a 
+colon separated list of directories that the dynamic linker should search for shared 
+objects when building a process image after execution, before searching in any 
+other directories.
+PATH->Indicates search path for commands. It is a coloumn separated list of 
+directories in which the shell looks for commands.133
+PATH ->Indicates search path for commands. It is a colon separated list of 
+directories in which the shell looks for commands.
+PWD-> Indicates the current working directory as set by the cd command.
+RANDOM ->generates a random(storage) integer between 0 and 32,767 each time 
+it is referenced.
+SHLVL-> Increments by one each time of instance of bash is started. This variable 
+is useful for determing whether the built in exist command ends the current 
+transaction.
+TERM->refers to the display type.
+TZ->refers to time zone.It can take values like GMTT,AST etc....
+UID ->expands to the numeric user ID of the current user initialized at shell 
+startup.
